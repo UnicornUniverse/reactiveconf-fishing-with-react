@@ -27,7 +27,7 @@ function toggleOn(lights, payload) {
 function setBrightness(lights, payload) {
   const newLights = lights.concat();
   const light = newLights.find(l => l.id === payload.light.id);
-  light.state.bri = payload.brightness;
+  light.state.bri = payload.bri;
   return newLights;
 }
 

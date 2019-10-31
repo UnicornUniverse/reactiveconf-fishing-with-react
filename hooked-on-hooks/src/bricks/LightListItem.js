@@ -88,7 +88,7 @@ function LightListItem({ light, onDispatch }) {
         <LightSlider
           min={1}
           max={254}
-          value={light.state.bri}
+          initValue={light.state.bri}
           onChange={setBrightness}
         />
       </div>
