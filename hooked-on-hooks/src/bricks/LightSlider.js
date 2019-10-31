@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { useRef, useState, useEffect } from "react";
-import useDebounceCallback from "../hooks/useDebounceCallback";
 
 const main = css`
   outline-style: solid;
@@ -18,7 +17,7 @@ const slider = css`
 
 function LightSlider({ min, max, initValue, onChange }) {
   const ref = useRef(null);
-  const [debounceOnChange] = useDebounceCallback(onChange, 100);
+  /* Add useDebounceCallback hook */
   const [value, setValue] = useState(initValue);
 
   useEffect(() => {
@@ -39,20 +38,15 @@ function LightSlider({ min, max, initValue, onChange }) {
   }
 
   function _handleMouseMove(event) {
-    if (event.buttons === 0) {
-      return;
-    }
-
-    const newWidth =
-      (event.clientX - ref.current.offsetLeft) / ref.current.offsetWidth;
-
-    const newValue = Math.round(newWidth * (max - min) + min);
-
-    setValue(newValue);
-
-    if (typeof onChange === "function") {
-      debounceOnChange(newValue);
-    }
+    // TODO Uncomment body of function
+    // if (event.buttons === 0) {
+    //   return;
+    // }
+    // const newWidth =
+    //   (event.clientX - ref.current.offsetLeft) / ref.current.offsetWidth;
+    // const newValue = Math.round(newWidth * (max - min) + min);
+    // setValue(newValue);
+    // debounceOnChange(newValue);
   }
 
   const width = ((value - min) / (max - min)) * 100;
