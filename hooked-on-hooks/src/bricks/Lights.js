@@ -3,6 +3,14 @@ import HueContext from "../contexts/HueContext";
 import LightList from "./LightList";
 import LightReducer from "../reducers/LightReducer";
 
+function transform(response) {
+  return Object.keys(response).map(key => {
+    let light = response[key];
+    light.id = key;
+    return light;
+  });
+}
+
 function Lights() {
   const hueContext = useContext(HueContext);
   const [lights, dispatch] = useReducer(LightReducer, []);
@@ -16,11 +24,7 @@ function Lights() {
 
       const response = await hueContext.user.getLights();
 
-      const newLights = Object.keys(response).map(key => {
-        let light = response[key];
-        light.id = key;
-        return light;
-      });
+      const newLights = transform(response);
 
       dispatch({ type: "reset", payload: newLights });
     }
