@@ -1,7 +1,6 @@
-import React, { useRef, useReducer, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import HueContext from "../contexts/HueContext";
 import LightList from "./LightList";
-import LightReducer from "../reducers/LightReducer";
 
 function transform(response) {
   return Object.keys(response).map(key => {
@@ -13,8 +12,8 @@ function transform(response) {
 
 function Lights() {
   const hueContext = useContext(HueContext);
-  const [lights, dispatch] = useReducer(LightReducer, []);
-  const timerId = useRef(null);
+  /* TODO Change useState for useReducer with LightReducer */
+  const [lights, setLights] = useState([]);
 
   useEffect(() => {
     async function loadLights() {
@@ -26,58 +25,42 @@ function Lights() {
 
       const newLights = transform(response);
 
-      dispatch({ type: "reset", payload: newLights });
+      /* TODO Change setLights for dispatch */
+      setLights(newLights);
     }
 
-    timerId.current = setInterval(loadLights, 1000);
-
     loadLights();
-
-    return () => clearInterval(timerId.current);
   }, [hueContext]);
 
-  function dispatchWrapper(dispatch) {
-    return action => {
-      const { payload } = action;
+  // function dispatchWrapper(dispatch) {
+  //   return action => {
+  //     const { payload } = action;
 
-      switch (action.type) {
-        case "toggleOn":
-          hueContext.user.setLightState(payload.light.id, {
-            on: payload.on
-          });
-          break;
-        case "setBrightness":
-          hueContext.user.setLightState(payload.light.id, {
-            bri: payload.bri
-          });
-          break;
-        case "setHue":
-          hueContext.user.setLightState(payload.light.id, { hue: payload.hue });
-          break;
-        case "setSaturation":
-          hueContext.user.setLightState(payload.light.id, { sat: payload.sat });
-          break;
-        case "setColor":
-          hueContext.user.setLightState(payload.light.id, payload.color);
-          break;
-        case "setEffect":
-          hueContext.user.setLightState(payload.light.id, {
-            effect: payload.effect
-          });
-          break;
-        default:
-          break;
-      }
+  //     switch (action.type) {
+  //       case "toggleOn":
+  //         hueContext.user.setLightState(payload.light.id, {
+  //           on: payload.on
+  //         });
+  //         break;
+  //       case "setBrightness":
+  //         hueContext.user.setLightState(payload.light.id, {
+  //           bri: payload.bri
+  //         });
+  //         break;
+  //       default:
+  //         break;
+  //     }
 
-      dispatch(action);
-    };
-  }
+  //     dispatch(action);
+  //   };
+  // }
 
   if (hueContext.status === "connecting") {
     return "Connecting to bridge...";
   }
 
-  return <LightList lights={lights} onDispatch={dispatchWrapper(dispatch)} />;
+  /* TODO Set prop onDispatch */
+  return <LightList lights={lights} />;
 }
 
 export default Lights;

@@ -34,49 +34,17 @@ const brightness = css`
 
 function LightListItem({ light, onDispatch }) {
   function switchLight() {
-    onDispatch({ type: "toggleOn", payload: { light, on: !light.state.on } });
+    // TODO Uncomment onDispatch
+    //onDispatch({ type: "toggleOn", payload: { light, on: !light.state.on } });
   }
 
   function setBrightness(bri) {
-    onDispatch({
-      type: "setBrightness",
-      payload: { light, bri }
-    });
+    // TODO Uncomment onDispatch
+    // onDispatch({
+    //   type: "setBrightness",
+    //   payload: { light, bri }
+    // });
   }
-  // function setHue(hue) {
-  //   dispatcher({
-  //     type: "setHue",
-  //     payload: { light, hue }
-  //   });
-  // }
-
-  // function setSaturation(sat) {
-  //   dispatcher({
-  //     type: "setSaturation",
-  //     payload: { light, sat }
-  //   });
-  // }
-
-  // function setColor(color) {
-  //   console.log("setColor", color);
-  //   let hue = Math.floor((color.hsl.h / 360) * 65535);
-  //   let bri = Math.floor(color.hsl.l * 254);
-  //   let sat = Math.floor(color.hsl.s * 254);
-
-  //   dispatcher({
-  //     type: "setColor",
-  //     payload: {
-  //       light,
-  //       color: { bri, sat, hue }
-  //     }
-  //   });
-  // }
-
-  // let color = {
-  //   h: (light.state.hue / 65535) * 360,
-  //   s: light.state.sat / 254,
-  //   l: light.state.bri / 254
-  // };
 
   function _renderBrightness() {
     if (!light.state.on) {
