@@ -7,10 +7,11 @@ import BridgeListItem from "./BridgeListItem";
 const mainCss = css`
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
 `;
 
 const itemCss = css`
-  flex-grow: 0 1 auto;
+  flex: 1 0 auto;
   margin: 10px;
 `;
 

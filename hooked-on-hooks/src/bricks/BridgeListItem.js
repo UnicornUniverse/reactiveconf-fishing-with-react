@@ -3,10 +3,12 @@ import { jsx, css } from "@emotion/core";
 
 const itemCss = css`
   display: flex;
-  width: 200px;
-  height: 50px;
-  padding: 5px;
-  align-items: center;
+  height: 40px;
+  min-width: 200px;
+  align-items: stretch;
+  border-color: #2a2a2a;
+  border-style: solid;
+  border-radius: 15px;
 `;
 
 const activeItemCss = css`
@@ -17,13 +19,38 @@ const activeItemCss = css`
 
 const inactiveItemCss = css`
   ${itemCss}
-  color: #7f7f7f;
-  background-color: #37373d;
+  color: #2a2a2a;
+  background-color: #ffffff;
+
+  &:hover {
+    color: #ffffff;
+    background-color: #5d5d5d;
+  }
 `;
 
 const nameCss = css`
   flex: 1 0 auto;
-  text-align: left;
+  text-align: center;
+  padding-top: 8px;
+
+  &:active {
+    font-size: 120%;
+  }
+`;
+
+const deleteCss = css`
+  width: 40px;
+  text-align: center;
+  padding-top: 8px;
+
+  &:hover {
+    color: red;
+    font-weight: bold;
+  }
+
+  &:active {
+    font-size: 120%;
+  }
 `;
 
 function BridgeListItem({ bridge, active, configDispatch }) {
@@ -46,7 +73,9 @@ function BridgeListItem({ bridge, active, configDispatch }) {
       <div onClick={_handleSetActive} css={nameCss}>
         {bridge.name}
       </div>
-      <div onClick={_handleRemove}>X</div>
+      <div onClick={_handleRemove} css={deleteCss}>
+        X
+      </div>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import BridgeList from "./BridgeList";
 import ConfigContextProvider from "../contexts/ConfigContextProvider";
 import MessageContextProvider from "../contexts/MessageContextProvider";
 import MessageList from "./MessageList";
+import Top from "./Top";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <ConfigContextProvider>
         <MessageContextProvider>
           <HueContextProvider>
+            <Top />
             <BridgeForm />
             <BridgeList />
             <MessageList />
