@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
-import { useContext, useState } from "react";
-import HueContext from "../contexts/HueContext";
+import { useState } from "react";
 
 const labelCss = css`
   font-weight: bold;
@@ -10,14 +9,14 @@ const labelCss = css`
 
 export default function BridgeForm() {
   const [bridgeIp, setBridgeIp] = useState("192.168.0.100");
-  const { addBridge } = useContext(HueContext);
+  /* TODO Add useContext */
 
   function _handleChange(e) {
     setBridgeIp(e.target.value);
   }
 
   function _handleClick() {
-    addBridge({ ip: bridgeIp });
+    /* TODO Call method addBridge from HueContext */
   }
 
   return (
