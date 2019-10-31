@@ -33,7 +33,7 @@ function HueContextProvider({ children }) {
         }
       });
     },
-    [dispatch]
+    [dispatch, log]
   );
 
   const _removeBridge = useCallback(

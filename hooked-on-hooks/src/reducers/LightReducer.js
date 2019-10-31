@@ -45,14 +45,6 @@ function setSaturation(lights, payload) {
   return newLights;
 }
 
-function setEffect(lights, payload) {
-  const newLights = lights.concat();
-  const light = newLights.find(l => l.id === payload.light.id);
-  light.state.bri = payload.brightness;
-  //
-  return newLights;
-}
-
 function setColor(lights, payload) {
   const newLights = lights.concat();
   const light = newLights.find(l => l.id === payload.light.id);
